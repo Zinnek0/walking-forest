@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://oqhgrh54bfvq"]
+
+[ext_resource type="PackedScene" uid="uid://clue5tjlc7tq2" path="res://classes/environment/CampFire/WF_Fire.glb" id="1_shpjc"]
+[ext_resource type="Shader" path="res://classes/environment/CampFire/fire.gdshader" id="2_dw2hv"]
+[ext_resource type="Texture2D" uid="uid://1b7qugclkd82" path="res://classes/environment/CampFire/fire_texture.tres" id="3_ymr08"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wq4r8"]
+render_priority = 0
+shader = ExtResource("2_dw2hv")
+shader_parameter/emission_intensity = 1.0
+shader_parameter/animated_texture = ExtResource("3_ymr08")
+
+[node name="WF_Fire" instance=ExtResource("1_shpjc")]
+
+[node name="CampFire_001" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_wq4r8")
+cast_shadow = 0

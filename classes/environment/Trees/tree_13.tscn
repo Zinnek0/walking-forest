@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://6fpm6uvoe3sr"]
+
+[ext_resource type="PackedScene" uid="uid://cgcunipb0653h" path="res://classes/environment/Trees/WF_PCGTree.13.glb" id="1_t5u86"]
+[ext_resource type="Material" uid="uid://85rxxwglavph" path="res://classes/environment/Trees/treeFoliage.tres" id="2_jv4ar"]
+[ext_resource type="Material" uid="uid://crajskv1seyb2" path="res://classes/environment/Trees/treeTrunk.tres" id="3_wufsa"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0airq"]
+height = 1.0
+radius = 0.05928
+
+[node name="WF_PCGTree_13" instance=ExtResource("1_t5u86")]
+
+[node name="Tree_13" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_jv4ar")
+surface_material_override/1 = ExtResource("3_wufsa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_0airq")

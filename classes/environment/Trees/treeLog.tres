@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ctwcf82pnt5vg"]
+
+[ext_resource type="Shader" path="res://scenes/Curvature.gdshader" id="1_rv1j0"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_rv1j0")
+shader_parameter/color = Color(0.746875, 0.534581, 0.238681, 1)
+shader_parameter/roughness = 0.7

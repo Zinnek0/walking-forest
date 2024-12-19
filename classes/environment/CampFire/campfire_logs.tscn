@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cium7f57rvst4"]
+
+[ext_resource type="PackedScene" uid="uid://xyl2d7083s1a" path="res://classes/environment/CampFire/WF_CampFireLogs.glb" id="1_x7qnb"]
+[ext_resource type="Shader" path="res://scenes/Curvature.gdshader" id="2_b3uc1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_av4w8"]
+render_priority = 0
+shader = ExtResource("2_b3uc1")
+shader_parameter/color = Color(0.230581, 0.127389, 0.0162006, 1)
+shader_parameter/roughness = 0.39
+
+[node name="WF_CampFireLogs" instance=ExtResource("1_x7qnb")]
+
+[node name="CampFire_002" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_av4w8")
+cast_shadow = 0

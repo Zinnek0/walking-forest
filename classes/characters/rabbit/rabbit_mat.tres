@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bfue5k31idwyp"]
+
+[ext_resource type="Shader" path="res://classes/characters/rabbit/rabbit.gdshader" id="1_obf0d"]
+[ext_resource type="Texture2D" uid="uid://bgcl7qshv4dh6" path="res://assets/characters/WF_Rabbit_color.png" id="2_w7427"]
+[ext_resource type="Texture2D" uid="uid://chga3mt4eh2g1" path="res://assets/characters/FaceTextureTest_Blink_2x2.png" id="3_oaf27"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_obf0d")
+shader_parameter/faceCount = 2
+shader_parameter/faceUsers = 2
+shader_parameter/faceIndex = 0
+shader_parameter/faceUserIndex = 3
+shader_parameter/face = ExtResource("3_oaf27")
+shader_parameter/body = ExtResource("2_w7427")

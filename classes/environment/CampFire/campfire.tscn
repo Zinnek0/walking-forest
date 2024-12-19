@@ -1,0 +1,83 @@
+[gd_scene load_steps=14 format=3 uid="uid://xxonqy8ton6k"]
+
+[ext_resource type="PackedScene" uid="uid://d24uumbfqtn0" path="res://classes/environment/CampFire/WF_CampFire.glb" id="1_b5ghm"]
+[ext_resource type="Shader" path="res://scenes/Curvature.gdshader" id="2_52qc1"]
+[ext_resource type="Texture2D" uid="uid://1b7qugclkd82" path="res://classes/environment/CampFire/fire_texture.tres" id="2_isbfc"]
+[ext_resource type="PackedScene" uid="uid://oqhgrh54bfvq" path="res://classes/environment/CampFire/fire.tscn" id="3_e1rba"]
+[ext_resource type="PackedScene" uid="uid://cium7f57rvst4" path="res://classes/environment/CampFire/campfire_logs.tscn" id="4_iit8x"]
+[ext_resource type="Material" uid="uid://bugeipnpv56re" path="res://classes/environment/CampFire/smoke_texture.tres" id="6_10r7x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_88f3j"]
+render_priority = 0
+shader = ExtResource("2_52qc1")
+shader_parameter/color = Color(0.347122, 0.3441, 0.37, 1)
+shader_parameter/roughness = 0.595
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i4e3b"]
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("2_isbfc")
+emission_enabled = true
+emission_texture = ExtResource("2_isbfc")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hxmat"]
+height = 0.476071
+radius = 0.182574
+
+[sub_resource type="Curve" id="Curve_nbwqv"]
+_data = [Vector2(0, 0.208791), 0.0, 0.0, 0, 0, Vector2(0.513636, 0.912088), 0.326701, 0.326701, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_oyh40"]
+curve = SubResource("Curve_nbwqv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hb65q"]
+spread = 1.452
+gravity = Vector3(0, 1, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_oyh40")
+color = Color(0.417954, 0.316441, 0.645579, 1)
+turbulence_enabled = true
+turbulence_noise_strength = 0.38
+turbulence_noise_scale = 0.154
+turbulence_noise_speed_random = 0.14
+turbulence_influence_min = 0.026
+turbulence_influence_max = 0.074
+
+[sub_resource type="QuadMesh" id="QuadMesh_50sbf"]
+material = ExtResource("6_10r7x")
+size = Vector2(0.5, 0.5)
+
+[node name="WF_CampFire" instance=ExtResource("1_b5ghm")]
+
+[node name="CampFire" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_88f3j")
+surface_material_override/0 = SubResource("StandardMaterial3D_i4e3b")
+
+[node name="WF_Fire" parent="." index="1" instance=ExtResource("3_e1rba")]
+
+[node name="WF_CampFireLogs" parent="." index="2" instance=ExtResource("4_iit8x")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.143731, 0)
+light_color = Color(0.92329, 0.430489, 0, 1)
+light_size = 0.178
+omni_range = 1.269
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100838, 0)
+shape = SubResource("CylinderShape3D_hxmat")
+
+[node name="Node3D" type="Node3D" parent="." index="5"]
+transform = Transform3D(0.882948, 0, 0.469472, 0, 1, 0, -0.469472, 0, 0.882948, 0, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Node3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.968148, 0.25038, 0, -0.25038, 0.968148, 0, 0.117, 0)
+cast_shadow = 0
+amount = 20
+lifetime = 5.14
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_hb65q")
+draw_pass_1 = SubResource("QuadMesh_50sbf")

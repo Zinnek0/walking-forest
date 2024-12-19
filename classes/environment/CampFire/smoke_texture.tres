@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bugeipnpv56re"]
+
+[ext_resource type="Shader" path="res://classes/environment/CampFire/Smoke.gdshader" id="1_0bj6h"]
+[ext_resource type="Texture2D" uid="uid://b8hxkdfjycv1x" path="res://classes/environment/CampFire/WF_SmokePuff.png" id="2_h3e67"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0bj6h")
+shader_parameter/roughness = 0.605
+shader_parameter/tex = ExtResource("2_h3e67")
